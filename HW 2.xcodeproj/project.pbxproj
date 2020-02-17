@@ -56,12 +56,12 @@
 		A86938C520D027C300E87976 /* HW 2 */ = {
 			isa = PBXGroup;
 			children = (
-				A86938C620D027C300E87976 /* AppDelegate.swift */,
 				A86938C820D027C300E87976 /* EditColorViewController.swift */,
-				A86938CA20D027C300E87976 /* Main.storyboard */,
 				A98836BC23FB02B400BE8B83 /* ColorScreenViewController.swift */,
-				A86938CD20D027C400E87976 /* Assets.xcassets */,
+				A86938CA20D027C300E87976 /* Main.storyboard */,
 				A86938CF20D027C400E87976 /* LaunchScreen.storyboard */,
+				A86938CD20D027C400E87976 /* Assets.xcassets */,
+				A86938C620D027C300E87976 /* AppDelegate.swift */,
 				A86938D220D027C400E87976 /* Info.plist */,
 			);
 			path = "HW 2";

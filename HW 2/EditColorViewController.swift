@@ -23,6 +23,8 @@ class EditColorViewController: UIViewController {
     @IBOutlet weak var redTextField: UITextField!
     @IBOutlet weak var greenTextField: UITextField!
     @IBOutlet weak var blueTextField: UITextField!
+    
+    var viewColor: UIColor!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +35,6 @@ class EditColorViewController: UIViewController {
         greenSlider.tintColor = .green
         
         setColor()
-        setValue(for: redLabel, greenLabel, blueLabel)
-        setValue(for: redTextField, greenTextField, blueTextField)
         
         addDoneButtonTo(redTextField, greenTextField, blueTextField)
     }
@@ -64,12 +64,28 @@ class EditColorViewController: UIViewController {
     
     // Цвет вью
     private func setColor() {
-        colorView.backgroundColor = UIColor(
-            red: CGFloat(redSlider.value),
-            green: CGFloat(greenSlider.value),
-            blue: CGFloat(blueSlider.value),
-            alpha: 1
-        )
+        if let colorValue = viewColor {
+            colorView.backgroundColor = colorValue
+            viewColor = nil
+            
+            var red: CGFloat = 0
+            var green: CGFloat = 0
+            var blue: CGFloat = 0
+            var alpha: CGFloat = 0
+            if colorValue.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+                redSlider.setValue(Float(red), animated: false)
+                greenSlider.setValue(Float(green), animated: false)
+                blueSlider.setValue(Float(blue), animated: false)
+            }
+
+        } else {
+            colorView.backgroundColor = UIColor(
+                red: CGFloat(redSlider.value),
+                green: CGFloat(greenSlider.value),
+                blue: CGFloat(blueSlider.value),
+                alpha: 1
+            )
+        }
     }
     
     private func setValue(for labels: UILabel...) {
