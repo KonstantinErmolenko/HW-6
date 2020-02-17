@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EditColorViewController.swift
 //  HW 2
 //
 //  Created by Alexey Efimov on 12.06.2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class EditColorViewController: UIViewController {
     
     @IBOutlet weak var colorView: UIView!
     
@@ -58,6 +58,10 @@ class ViewController: UIViewController {
         setColor()
     }
     
+    @IBAction func doneButtonPressed() {
+        dismiss(animated: true)
+    }
+    
     // Цвет вью
     private func setColor() {
         colorView.backgroundColor = UIColor(
@@ -97,7 +101,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - UITextFieldDelegate
-extension ViewController: UITextFieldDelegate {
+extension EditColorViewController: UITextFieldDelegate {
     
     // Скрываем клавиатуру нажатием на "Done"
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -135,7 +139,7 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
-extension ViewController {
+extension EditColorViewController {
     
     // Метод для отображения кнопки "Готово" на цифровой клавиатуре
     private func addDoneButtonTo(_ textFields: UITextField...) {
