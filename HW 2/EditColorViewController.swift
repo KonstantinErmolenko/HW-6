@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ChangeColorDelegate {
+    func changeColor(_ color: UIColor)
+}
+
 class EditColorViewController: UIViewController {
     
     @IBOutlet weak var colorView: UIView!
@@ -25,16 +29,19 @@ class EditColorViewController: UIViewController {
     @IBOutlet weak var blueTextField: UITextField!
     
     var viewColor: UIColor!
-        
+    var delegate: ChangeColorDelegate!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+               
         colorView.layer.cornerRadius = 15
         
         redSlider.tintColor = .red
         greenSlider.tintColor = .green
         
         setColor()
+        setValue(for: redLabel, greenLabel, blueLabel)
+        setValue(for: redTextField, greenTextField, blueTextField)
         
         addDoneButtonTo(redTextField, greenTextField, blueTextField)
     }
@@ -59,6 +66,7 @@ class EditColorViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
+        delegate.changeColor(colorView.backgroundColor!)
         dismiss(animated: true)
     }
     
@@ -77,7 +85,6 @@ class EditColorViewController: UIViewController {
                 greenSlider.setValue(Float(green), animated: false)
                 blueSlider.setValue(Float(blue), animated: false)
             }
-
         } else {
             colorView.backgroundColor = UIColor(
                 red: CGFloat(redSlider.value),
